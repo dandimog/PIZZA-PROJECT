@@ -1,10 +1,297 @@
+html {
+  min-width: 360px;
+}
+
 .pizza-card {
   img {
+    min-width: 250px;
     max-width: 250px;
   }
 
   h3 {
     color: @mainColor;
     background-color: lighten(@mainColor, 45%);
+  }
+}
+
+li {
+
+}
+
+.container {
+  width: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+//@media (min-width: 360px) {
+//  .container {
+//    width: 100%;
+//  }
+//
+//}
+//
+//@media (min-width: 700px) {
+//  .container {
+//    width: 90%;
+//  }
+//}
+//
+//@media (min-width: 1000px) {
+//  .container {
+//    width: 90%;
+//  }
+//}
+//
+//@media (min-width: 1400px) {
+//  .container {
+//    width: 80%;
+//  }
+//}
+
+
+
+@media (max-width: 1030px) {
+  .coverage_3 {
+    display: none;
+  }
+}
+
+@media (max-width: 830px) {
+  .coverage_2 {
+    display: none;
+  }
+}
+
+//@media (max-width: 600px) {
+//  .right-grand-container {
+//    display: none;
+//  }
+//
+//  .left-grand-container {
+//    width: 100%;
+//    margin-right: 0;
+//  }
+//}
+
+//@media (min-width: 360px) {
+//  .right-grand-container {
+//    width: 0;
+//    height: 0;
+//  }
+//
+//  .left-grand-container {
+//    margin-right: 0;
+//  }
+//}
+
+.pizza-card {
+  min-width: 260px;
+}
+
+.left-grand-container {
+  margin-right: 300px;
+  //padding-right: 300px;
+}
+
+.black-back-container {
+  position: fixed;
+  right: 300px;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: 80px;
+  background: black;
+  opacity: 70%;
+  z-index: 2;
+  color: #d8d8d8;
+}
+
+.black-back-sub-container {
+  height: 100%;
+  margin-left: 115px;
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.black-row-top, .black-row-bottom {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.black-row-top {
+  border-bottom: #aeaeae solid thin;
+}
+
+.coverage {
+  padding-right: 20px;
+}
+
+.btn, .btn:hover, .btn:active, .btn:visited, .btn:focus {
+  background: #ffad36;
+  border-color: #ffad36;
+  color: white;
+}
+
+.ss {
+  margin-left: auto;
+}
+
+.pizza-kma-grand-container {
+  position: fixed;
+  top: 0;
+  margin-left: 20px;
+
+  width: 80px;
+  height: 120px;
+  z-index: 3;
+}
+
+.pizza-kma-container {
+  height: 100px;
+  background: #ffad36;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pizza {
+  font-size: 18px;
+}
+
+.kma {
+  font-size: 24px;
+}
+
+.triangle_1 {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid #ffad36;
+  border-right: 40px solid transparent;
+  box-sizing: border-box;
+}
+
+.triangle_2 {
+  position: relative;
+  right: 0;
+  bottom: 20px;
+  margin-left: 40px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid #ffad36;
+  border-left: 40px solid transparent;
+  box-sizing: border-box;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav-item > a {
+  color: #ffad36;
+}
+
+.nav-margin {
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav-pills > li > a:hover {
+  background-color: #ffd07d;
+  color: white;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: white;
+  background-color: #ffad36;
+}
+
+.all-pizzas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 100px;
+  width: 100%;
+  font-size: xx-large;
+}
+
+.circle-8 {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: #ffad36;
+}
+
+.discount-badge-grand-container {
+  position: fixed;
+  bottom: 0;
+  height: 120px;
+  margin-left: 20px;
+  width: 80px;
+}
+
+.discount-badge-container {
+  position: relative;
+  top: 20px;
+  background: orange;
+  height: 100px;
+}
+
+.discount-triangle-1 {
+  position: relative;
+  left: 0;
+  bottom: 100px;
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid orange;
+  border-right: 40px solid transparent;
+  box-sizing: border-box;
+}
+
+.discount-triangle-2 {
+  position: relative;
+  left: 40px;
+  bottom: 120px;
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid orange;
+  border-left: 40px solid transparent;
+  box-sizing: border-box;
+}
+
+.right-grand-container {
+  position: fixed;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background: #d7d7d7;
+  z-index: 2;
+}
+
+@media screen and (max-width: 590px) {
+  .right-grand-container {
+    display: none;
+  }
+  .left-grand-container {
+    margin-right: 0;
+  }
+  .black-back-container {
+    width: 100%;
+    right: 0;
   }
 }
