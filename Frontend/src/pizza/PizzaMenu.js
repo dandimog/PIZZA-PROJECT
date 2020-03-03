@@ -32,18 +32,23 @@ function showPizzaList(list) {
 }
 
 function filterPizza(filter) {
-    //Масив куди потраплять піци які треба показати
-    var pizza_shown = [];
+    // //Масив куди потраплять піци які треба показати
+    // var pizza_shown = [];
+    //
+    // Pizza_List.forEach(function(pizza){
+    //     //Якщо піца відповідає фільтру
+    //
+    //
+    //
+    //     //pizza_shown.push(pizza);
+    //
+    //     //TODO: зробити фільтри
+    // });
+    //
+    // //Показати відфільтровані піци
+    // showPizzaList(pizza_shown);
 
-    Pizza_List.forEach(function(pizza){
-        //Якщо піка відповідає фільтру
-        //pizza_shown.push(pizza);
-
-        //TODO: зробити фільтри
-    });
-
-    //Показати відфільтровані піци
-    showPizzaList(pizza_shown);
+    // var pizza_shown = Pizza_List.
 }
 
 function initialiseMenu() {

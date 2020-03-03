@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     config.watch = watchDebug;
     grunt.initConfig(config);
 
-    //Сказати які модулі необхідно виокристовувати
+    //Сказати які модулі необхідно використовувати
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
