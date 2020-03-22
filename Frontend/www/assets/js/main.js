@@ -183,6 +183,7 @@ module.exports = pizza_info;
 var ejs = require('ejs');
 
 
+
 exports.PizzaMenu_OneItem = ejs.compile("<%\r\nfunction getIngredientsArray(pizza) {\r\n    //Отримує вміст піци\r\n    var content = pizza.content;\r\n    var result = [];\r\n\r\n    //Object.keys повертає масив ключів в об’єкті JavaScript\r\n\r\n    Object.keys(content).forEach(function (key) {\r\n\r\n        //a.concat(b) створює спільний масив із масивів a та b\r\n        result = result.concat(content[key]);\r\n    });\r\n\r\n    result[0] = result[0].charAt(0).toUpperCase() + result[0].slice(1);\r\n    return result;\r\n}\r\n%>\r\n\r\n<div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-4\">\r\n\r\n    <div class=\"thumbnail pizza-card\">\r\n\r\n        <img class=\"pizza-icon\" src=\"<%= pizza.icon %>\">\r\n\r\n        <!--        <div class=\"caption\">-->\r\n\r\n        <% if(pizza.is_new) { %>\r\n        <span class=\"label label-danger\">Нова</span>\r\n        <% } else if(pizza.is_popular) { %>\r\n            <span class=\"label label-success\">Популярна</span>\r\n        <% } %>\r\n\r\n        <div class=\"caption\">\r\n            <span class=\"title\"><%= pizza.title %></span>\r\n            <div class=\"type\"><%= pizza.type %></div>\r\n            <div class=\"description\">\r\n                <%= getIngredientsArray(pizza).join(\", \") %>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"inRowContainer\">\r\n            <% if(pizza.big_size) { %>\r\n                <div class=\"inRow\">\r\n\r\n                    <div class=\"mini-icon-container\">\r\n                        <img class=\"icon\" src=\"assets/images/size-icon.svg\" alt=\"\"><%= pizza.big_size.size %>\r\n                    </div>\r\n\r\n                    <div class=\"mini-icon-container\">\r\n                        <img class=\"icon\" src=\"assets/images/weight.svg\" alt=\"\"><%= pizza.big_size.weight %>\r\n                    </div>\r\n\r\n                    <div class=\"price-of-pizza\">\r\n                        <%= pizza.big_size.price %>\r\n                    </div>\r\n\r\n                    <div class=\"grn\">\r\n                        грн.\r\n                    </div>\r\n\r\n                    <a id=\"buy-big\" class=\"btn\">Купити</a>\r\n\r\n                </div>\r\n            <% } %>\r\n\r\n            <% if(pizza.small_size) { %>\r\n                <div class=\"inRow\">\r\n\r\n                    <div class=\"mini-icon-container\">\r\n                        <img class=\"icon\" src=\"assets/images/size-icon.svg\" alt=\"\"><%= pizza.small_size.size %>\r\n                    </div>\r\n\r\n                    <div class=\"mini-icon-container\">\r\n                        <img class=\"icon\" src=\"assets/images/weight.svg\" alt=\"\"><%= pizza.small_size.weight %>\r\n                    </div>\r\n\r\n                    <div class=\"price-of-pizza\">\r\n                        <%= pizza.small_size.price %>\r\n                    </div>\r\n\r\n                    <div class=\"grn\">\r\n                        грн.\r\n                    </div>\r\n\r\n                    <a id=\"buy-small\" class=\"btn\">Купити</a>\r\n\r\n                </div>\r\n            <% } %>\r\n        </div>\r\n\r\n        <!--        </div>-->\r\n    </div>\r\n\r\n</div>");
 exports.PizzaCart_OneItem = ejs.compile("<div class=\"try\">\r\n\r\n    <div class=\"pizza-cart-container\">\r\n\r\n            <div class=\"pizza-cart-container-row\">\r\n\r\n                <div class=\"bold-orange-font\">\r\n                    <%= pizza.title %> (\r\n                    <% if(size === \"big_size\") { %>Велика\r\n                    <% } else if(size === \"small_size\") { %>Мала\r\n                    <% } %>\r\n                    )\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"pizza-cart-container-row\">\r\n\r\n                <div class=\"padding-right\">\r\n                    <img class=\"padding\" src=\"assets/images/size-icon.svg\">\r\n                    <div class=\"padding\"> <%= pizza[size].size %></div>\r\n                </div>\r\n\r\n                <div class=\"padding-right\">\r\n                    <img class=\"padding\" src=\"assets/images/weight.svg\">\r\n                    <div class=\"padding\"> <%= pizza[size].weight %></div>\r\n                </div>\r\n\r\n            </div>\r\n\r\n            <div class=\"pizza-cart-container-row\">\r\n\r\n                <div class=\"total-price\">\r\n                    <%= pizza[size].price * quantity %>грн\r\n                </div>\r\n\r\n                <div class=\"minus-counter-plus-container\">\r\n                    <button class=\"minus shadow-sm\">\r\n                        −\r\n                    </button>\r\n\r\n                    <div class=\"text-area\" id=\"area\">\r\n                        <%= quantity %>\r\n                    </div>\r\n\r\n                    <button class=\"plus \">\r\n                        +\r\n                    </button>\r\n                </div>\r\n\r\n                <div class=\"delete-order\">\r\n                    <button class=\"cross\">\r\n                        ×\r\n                    </button>\r\n                </div>\r\n\r\n            </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"pizza-photo-container\">\r\n        <img class=\"half-image\" src= <%= pizza.icon %>>\r\n    </div>\r\n\r\n</div>");
 
@@ -608,6 +609,10 @@ function filterPizza(filter) {
 }
 
 function initialiseMenu() {
+    // // API.getPizzaList(function (error, list) {
+    //     showPizzaList(Pizza_List)
+    // // });
+
     //Показуємо усі піци
     showPizzaList(Pizza_List);
 
@@ -632,6 +637,7 @@ function initialiseMenu() {
 
 exports.filterPizza = filterPizza;
 exports.initialiseMenu = initialiseMenu;
+
 },{"../Pizza_List":1,"../Templates":2,"./PizzaCart":5}],7:[function(require,module,exports){
 
 },{}],8:[function(require,module,exports){
@@ -1794,6 +1800,7 @@ module.exports={
     ]
   ],
   "_from": "ejs@2.7.4",
+
   "_id": "ejs@2.7.4",
   "_inBundle": false,
   "_integrity": "sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==",
@@ -1808,6 +1815,7 @@ module.exports={
     "rawSpec": "2.7.4",
     "saveSpec": null,
     "fetchSpec": "2.7.4"
+
   },
   "_requiredBy": [
     "/"
@@ -1815,6 +1823,7 @@ module.exports={
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.7.4.tgz",
   "_spec": "2.7.4",
   "_where": "C:\\Users\\user\\Desktop\\JS-Pizza",
+
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1823,6 +1832,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
+
   "dependencies": {},
   "description": "Embedded JavaScript templates",
   "devDependencies": {
@@ -1850,6 +1860,7 @@ module.exports={
   "repository": {
     "type": "git",
     "url": "git://github.com/mde/ejs.git"
+
   },
   "scripts": {
     "postinstall": "node ./postinstall.js",

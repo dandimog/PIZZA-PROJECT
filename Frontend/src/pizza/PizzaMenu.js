@@ -68,6 +68,10 @@ function filterPizza(filter) {
 }
 
 function initialiseMenu() {
+    // API.getPizzaList(function (error, list) {
+    //     showPizzaList(Pizza_List)
+    // });
+
     //Показуємо усі піци
     showPizzaList(Pizza_List);
 
