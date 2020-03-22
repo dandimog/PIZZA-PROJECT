@@ -25,8 +25,9 @@ var pizza_info = [
             size: 40,
             price: 169
         },
-        is_new: true,
-        is_popular: true
+        is_new:true,
+        is_popular:true
+
     },
     {
         id:2,

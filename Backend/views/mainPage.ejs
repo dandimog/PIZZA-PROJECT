@@ -1,0 +1,49 @@
+<% include common/header.ejs %>
+
+<div class="left-grand-container">
+
+    <div class="all-pizzas">
+
+        <b>Усі піци</b>
+
+        <div id="number-of-pizzas-in-menu" class="number-of-pizzas-in-menu">
+            0
+        </div>
+
+    </div>
+
+    <div class="nav-margin">
+
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li id="1" class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                   aria-selected="true" id="filter-all">Усі</a>
+            </li>
+            <li id="2" class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                   aria-selected="false" id="filter-meat">М'ясні</a>
+            </li>
+            <li id="3" class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages"
+                   aria-selected="false" id="filter-pineapples">З ананасами</a>
+            </li>
+            <li id="4" class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings"
+                   aria-selected="false" id="filter-mushrooms">З грибами</a>
+            </li>
+            <li id="5" class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings"
+                   aria-selected="false" id="filter-seafood">З морепродуктами</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="row" id="pizza_list">
+
+        </div>
+    </div>
+
+    <% include common/footer.ejs %>
+
+</div>

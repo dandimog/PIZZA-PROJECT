@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= pageTitle %> - Pizza</title>
+
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- LESS основний файл -->
+    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less"/>
+    <!-- LESS JavaScript компілятор -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+
+</head>
+
+<body>
+<div class="right-grand-container">
+
+    <div class="top-cart">
+
+        <div class="order">
+            Замовлення
+            <div class="number-of-pizzas" id="number-of-pizzas">
+                0
+            </div>
+        </div>
+
+        <div class="clear-order">
+            <button id="clean" class="invisible-button">Очистити
+                замовлення</button>
+        </div>
+    </div>
+    <!-- top-cart -->
+
+    <div id="cart" class="center-cart">
+        <!--pizzas which will be added to cart-->
+    </div>
+
+</div>
+
+<div class="bottom-cart">
+
+    <div class="sum-container">
+
+        <div class="sum">Сума замовлення</div>
+        <div class="in-the-end" id="sum">123</div>
+
+    </div>
+
+    <div class="order-button-container">
+        <button onclick="location.href = '/order.html';" id="tester" class="btn order-button">
+            Замовити
+        </button>
+    </div>
+
+</div>
+
+<div class="black-back-container">
+
+    <div class="black-back-sub-container">
+
+        <div class="black-row-top">
+
+            <div id="telephone" class="coverage coverage_1">(044) 222 5 222</div>
+            <div id="time" class="coverage coverage_2">24 години / 7 днів на тиждень</div>
+            <div id="free-service" class="coverage coverage_3">Безкоштовна доставка піци</div>
+
+            <div class="ss">
+                <button id="entering" class="btn">Ввійти</button>
+            </div>
+
+        </div>
+
+        <div class="black-row-bottom">
+            <div class="coverage"><b>Піца</b></div>
+        </div>
+
+    </div>
+    <!-- black-back-sub-container -->
+
+</div>
+<!-- black-back-container -->
+
+<div class="pizza-kma-grand-container">
+
+    <div class="pizza-kma-container">
+        <div class="pizza">PIZZA</div>
+        <div class="kma">KMA</div>
+    </div>
+
+    <div class="triangle_1"></div>
+    <div class="triangle_2"></div>
+
+</div>
+

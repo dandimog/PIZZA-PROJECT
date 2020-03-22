@@ -2,14 +2,20 @@
  * Created by chaika on 25.01.16.
  */
 
-$(function() {
+$(function(){
     //This code will execute when the page is ready
     var PizzaMenu = require('./pizza/PizzaMenu');
     var PizzaCart = require('./pizza/PizzaCart');
-    // var Pizza_List = require('./Pizza_List');
+    var Map = require('./pizza/Maps');
+
+    if (window.location.pathname === "/") {
+        PizzaMenu.initialiseMenu();
+    }
+
+    if (window.location.pathname === "/order.html") {
+        Map.initializeMap();
+    }
 
     PizzaCart.initialiseCart();
-    PizzaMenu.initialiseMenu();
 
-    // console.log("1");
 });
