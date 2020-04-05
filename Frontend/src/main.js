@@ -7,6 +7,8 @@ $(function(){
     var PizzaMenu = require('./pizza/PizzaMenu');
     var PizzaCart = require('./pizza/PizzaCart');
     var Map = require('./pizza/Maps');
+    var Liq = require('./pizza/Liqpay');
+    var Order = require('./pizza/Order');
 
     if (window.location.pathname === "/") {
         PizzaMenu.initialiseMenu();
@@ -17,5 +19,9 @@ $(function(){
     }
 
     PizzaCart.initialiseCart();
+
+    $("#qwe").click(function () {
+        Liq.init();
+    })
 
 });
