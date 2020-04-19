@@ -1,4 +1,4 @@
-function init() {
+function initialise() {
 
     var crypto = require('crypto');
 
@@ -16,7 +16,7 @@ function init() {
 
     var data = base64(JSON.stringify(order));
     var signature = base64(sha1('jOy184ASegVwMXwDogJoaltE09JpzZuFxoy9lEiq'
-        + data + 'jOy184ASegVwMXwDogJoaltE09JpzZuFxoy9lEiq'));
+        + data + 'jOy184ASegVwMXwDogJoaltE09JpzZuFxoy9lEiq')); //change
 
     function base64(str) {
         return new Buffer(str).toString('base64');
@@ -25,7 +25,8 @@ function init() {
     function sha1(string) {
         var sha1 = crypto.createHash('sha1');
         sha1.update(string);
-        return sha1.digest();
+
+        return sha1.digest(); //change
     }
 
     LiqPayCheckout.init({
@@ -42,10 +43,7 @@ function init() {
     }).on("liqpay.close", function (data) {
 //	close
     });
-
-
-
 }
 
 
-exports.init = init;
+exports.initialise = initialise;

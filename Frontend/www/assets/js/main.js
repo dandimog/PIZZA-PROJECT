@@ -190,8 +190,11 @@ exports.PizzaCart_OneItem = ejs.compile("<div class=\"try\">\r\n\r\n    <div cla
 /**
  * Created by chaika on 25.01.16.
  */
+var isExisting1 = false;
+var isExisting2 = false;
+var isExisting3 = true;
 
-$(function(){
+$(function () {
     //This code will execute when the page is ready
     var PizzaMenu = require('./pizza/PizzaMenu');
     var PizzaCart = require('./pizza/PizzaCart');
@@ -209,15 +212,126 @@ $(function(){
 
     PizzaCart.initialiseCart();
 
-    $("#qwe").click(function () {
-        Liq.init();
-    })
+    // $("#qwe").click(function () {
+    //     // Order.createOrder();
+    //     console.log(isExisting1, isExisting2, isExisting3);
+    //     setTimeout(function() {
+    //         Liq.initialise();
+    //     }, 4000);
+    //
+    // });
+
+    $('#1').focusout(function () {
+        var sentenceRegex = /^\D+$/;
+        var myValue = this.value;
+        //console.log(myValue);
+        //console.log('Sentences: ', myValue.match(sentenceRegex) );
+
+        isExisting1 = sentenceRegex.test(myValue);
+        console.log(isExisting1);
+
+        if (isExisting1 === true) {
+            isExisting1 = true;
+
+            var feedback1 = document.getElementById("1-feedback");
+
+            feedback1.classList.add("valid-feedback");
+            feedback1.classList.remove("display-none");
+            feedback1.classList.remove("invalid-feedback");
+            $("#1-feedback").html("Correct!");
+
+            var element1 = document.getElementById("1");
+
+            element1.classList.remove("is-invalid");
+            element1.classList.add("is-valid");
+
+        } else {
+            feedback1 = document.getElementById("1-feedback");
+
+            feedback1.classList.add("invalid-feedback");
+            feedback1.classList.remove("display-none");
+            feedback1.classList.remove("valid-feedback");
+            $("#1-feedback").html("Please, make sure you entered no numbers!");
+
+            element1 = document.getElementById("1");
+
+            element1.classList.remove("is-valid");
+            element1.classList.add("is-invalid");
+        }
+        check(isExisting1, isExisting2, isExisting3);
+    });
+
+    $('#2').focusout(function () {
+        var sentenceRegex = /^[+]380?[0-9]{9}$/;
+        var myValue = this.value;
+        console.log(myValue);
+        isExisting2 = sentenceRegex.test(myValue);
+        console.log(isExisting2);
+        if (isExisting2 === true) {
+            isExisting2 = true;
+
+            var feedback2 = document.getElementById("2-feedback");
+
+            feedback2.classList.add("valid-feedback");
+            feedback2.classList.remove("display-none");
+            feedback2.classList.remove("invalid-feedback");
+            $("#2-feedback").html("Correct!");
+
+            var element2 = document.getElementById("2");
+
+            element2.classList.remove("is-invalid");
+            element2.classList.add("is-valid");
+
+        } else {
+            feedback2 = document.getElementById("2-feedback");
+
+            feedback2.classList.add("invalid-feedback");
+            feedback2.classList.remove("display-none");
+            feedback2.classList.remove("valid-feedback");
+            $("#2-feedback").html("Please, make sure you entered the telephone number in format of +380634527439");
+
+            element2 = document.getElementById("2");
+
+            element2.classList.remove("is-valid");
+            element2.classList.add("is-invalid");
+        }
+        check(isExisting1, isExisting2, isExisting3);
+    });
+
+    // $('#3').focusout(function () {
+    //     var sentenceRegex = /@/;
+    //     var myValue = this.value;
+    //     console.log(myValue);
+    //     isExisting3 = sentenceRegex.test(myValue);
+    //     console.log(isExisting3);
+    //     if (isExisting3 === true) {
+    //         isExisting3 = true;
+    //         // $('#3').css("border", " 1px solid green");
+    //     } else {
+    //         // $('#3').css("border", " 1px solid red");
+    //         // $('#numberEmail').css("visibility", "visible");
+    //     }
+    //     check(isExisting1, isExisting2, isExisting3);
+    // });
 
 });
 
+function check(isExisting1, isExisting2, isExisting3) {
+
+    console.log(isExisting1, isExisting2, isExisting3);
+
+    if (isExisting1 === true && isExisting2 === true && isExisting3 === true) {
+
+        $('#qwe').removeAttr("disabled");
+        // $('#qwe').attr('disabled', false);
+
+    } else {
+        $('#qwe').attr('disabled', true);
+    }
+}
 },{"./pizza/Liqpay":4,"./pizza/Maps":5,"./pizza/Order":6,"./pizza/PizzaCart":7,"./pizza/PizzaMenu":8}],4:[function(require,module,exports){
 (function (Buffer){
-function init() {
+function initialise() {
 
     var crypto = require('crypto');
 
@@ -235,7 +349,7 @@ function init() {
 
     var data = base64(JSON.stringify(order));
     var signature = base64(sha1('jOy184ASegVwMXwDogJoaltE09JpzZuFxoy9lEiq'
-        + data + 'jOy184ASegVwMXwDogJoaltE09JpzZuFxoy9lEiq'));
+        + data + 'jOy184ASegVwMXwDogJoaltE09JpzZuFxoy9lEiq')); //change
 
     function base64(str) {
         return new Buffer(str).toString('base64');
@@ -244,7 +358,8 @@ function init() {
     function sha1(string) {
         var sha1 = crypto.createHash('sha1');
         sha1.update(string);
-        return sha1.digest();
+
+        return sha1.digest(); //change
     }
 
     LiqPayCheckout.init({
@@ -261,15 +376,14 @@ function init() {
     }).on("liqpay.close", function (data) {
 //	close
     });
-
-
-
 }
 
 
-exports.init = init;
+exports.initialise = initialise;
 }).call(this,require("buffer").Buffer)
 },{"buffer":57,"crypto":65}],5:[function(require,module,exports){
+var directionsDisplay = new google.maps.DirectionsRenderer();
+
 function initializeMap() {
 //Тут починаємо працювати з картою
     var mapProp = {
@@ -289,27 +403,10 @@ function initializeMap() {
         icon: "assets/images/map-icon.png"
     });
 
-
-    // var directionsDisplay = google.maps.DirectionsRenderer();
-    //
-    // var directionsService = google.maps.DirectionsService();
-    // directionsDisplay.setMap(map);
-    //
-    // function calculateRoute(origin, destination) {
-    //     var request = {
-    //         origin: origin,
-    //         destination: destination,
-    //         travelMode: 'DRIVING'
-    //     };
-    //
-    //     directionsService.route(request, function (result, status) {
-    //         if (status==="OK") {
-    //             directionsDisplay.setDirections(result);
-    //         }
-    //     })
-    // }
-
-    var parker = null;
+    var old_parker;
+    var new_parker = new google.maps.Marker({
+        icon: "assets/images/home-icon.png"
+    });
 
     google.maps.event.addListener(map, 'click', function (me) {
         var coordinates = me.latLng;
@@ -319,6 +416,13 @@ function initializeMap() {
                 //Дізналися адресу
                 console.log(address);
 
+                new_parker.setMap(null);
+
+                new_parker.setPosition(address);
+                new_parker.setMap(map);
+
+                calculateRoute(map, point, address, function (err, address) {})
+
             } else {
                 console.log("Немає адреси")
             }
@@ -326,8 +430,8 @@ function initializeMap() {
 
     });
 
-    $("#entering").on("click", function () {
-        geocodeAddress($("#inputEmail4").val(), function (err, address) {
+    $("#qwe").on("click", function () {
+        geocodeAddress($("#3").val(), function (err, address) {
             if (!err) {
                 //Дізналися адресу
                 console.log(address);
@@ -352,11 +456,10 @@ function initializeMap() {
                 });
 
             } else {
-                // console.log($("#inputEmail4").val());
                 console.log("Немає адреси");
             }
         });
-        // alert("Value is ridden");
+
     })
 
 }
@@ -367,7 +470,9 @@ function geocodeLatLng(latlng, callback) {
     geocoder.geocode({'location': latlng}, function (results, status) {
         if (status === google.maps.GeocoderStatus.OK && results[1]) {
             var address = results[1].formatted_address;
-            callback(null, address);
+            // callback(null, address);
+            console.log(address);
+            callback(null, latlng);
         } else {
             callback(new Error("Can't find address"));
         }
@@ -388,7 +493,7 @@ function geocodeAddress(address, callback) {
 
 function calculateRoute(map, A_latlng, B_latlng, callback) {
 
-    var directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(null);
     directionsDisplay.setMap(map);
 
     var directionService = new google.maps.DirectionsService();
@@ -408,15 +513,6 @@ function calculateRoute(map, A_latlng, B_latlng, callback) {
         }
     });
 }
-
-    // directionsService.route(request, function (result, status) {
-    //     if (status==="OK") {
-    //         directionsDisplay.setDirections(result);
-    //     }
-    // });
-
-//Коли сторінка завантажилась
-// google.maps.event.addDomListener(window, 'load', initializeMap);
 
 exports.initializeMap = initializeMap;
 },{}],6:[function(require,module,exports){
@@ -444,6 +540,8 @@ function createOrder(){
 $("#q").click(function () {
     createOrder();
 });
+
+exports.createOrder = createOrder; //?
 },{}],7:[function(require,module,exports){
 /**
  * Created by chaika on 02.02.16.

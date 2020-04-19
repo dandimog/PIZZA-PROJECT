@@ -1,37 +1,54 @@
 <% include common/armer.ejs %>
 
-<div class="margin-top">
-
-</div>
+<div class="margin-top"></div>
 
 <form class="margin-left">
+
     <div class="form-group row">
         <label class="col-sm-2 col-form-label to-the-left">Ім'я</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" id="1" placeholder="Ім'я Прізвище">
+            <div id="1-feedback" class="display-none">
+                Please provide a valid zip.
+            </div>
         </div>
     </div>
+
     <div class="form-group row">
         <label class="col-sm-2 col-form-label to-the-left">Телефон</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" id="2" placeholder="+380634527858">
+            <div id="2-feedback" class="display-none">
+                Please provide a valid zip.
+            </div>
         </div>
     </div>
-    <div class="form-group row  ">
+
+    <div class="form-group row">
         <label class="col-sm-2 col-form-label to-the-left">Адреса</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" id="3" placeholder="Київ, вул. Спаська, 2">
+            <div id="3-feedback" class="display-none">
+                Please provide a valid zip.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label to-the-left invisible"></label>
+        <div class="col-sm-4">
+            <button type="button" class="btn col-sm-2 col-form-label to-the-left adding" id="qwe" disabled="disabled">Submit</button>
         </div>
     </div>
 </form>
 
-<button id="qwe">Zvazhiy</button>
-<button id="q">Zvazhiy loh</button>
-
-
 <div class="map-container">
     <div class="map" id="map"></div>
 </div>
+
+
+
 
 <!--<div class="">-->
 <!--    <div class="liqpay" id="liqpay"></div>-->
