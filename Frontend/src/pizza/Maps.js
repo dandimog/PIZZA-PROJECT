@@ -27,10 +27,13 @@ function initializeMap() {
     google.maps.event.addListener(map, 'click', function (me) {
         var coordinates = me.latLng;
 
-        geocodeLatLng(coordinates, function (err, address) {
+        geocodeLatLng(coordinates, function (err, address, text_address) {
             if (!err) {
                 //Дізналися адресу
                 console.log(address);
+
+                $("#3").val(text_address);
+
 
                 new_parker.setMap(null);
 
@@ -51,8 +54,6 @@ function initializeMap() {
             if (!err) {
                 //Дізналися адресу
                 console.log(address);
-
-                // parker.setMap(null);
 
                 parker = new google.maps.Marker({
                     position: address,
@@ -88,7 +89,7 @@ function geocodeLatLng(latlng, callback) {
             var address = results[1].formatted_address;
             // callback(null, address);
             console.log(address);
-            callback(null, latlng);
+            callback(null, latlng, address);
         } else {
             callback(new Error("Can't find address"));
         }

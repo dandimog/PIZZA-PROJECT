@@ -192,7 +192,7 @@ exports.PizzaCart_OneItem = ejs.compile("<div class=\"try\">\r\n\r\n    <div cla
  */
 var isExisting1 = false;
 var isExisting2 = false;
-var isExisting3 = true;
+var isExisting3 = false;
 
 $(function () {
     //This code will execute when the page is ready
@@ -212,14 +212,13 @@ $(function () {
 
     PizzaCart.initialiseCart();
 
-    // $("#qwe").click(function () {
-    //     // Order.createOrder();
-    //     console.log(isExisting1, isExisting2, isExisting3);
-    //     setTimeout(function() {
-    //         Liq.initialise();
-    //     }, 4000);
-    //
-    // });
+    $("#qwe").click(function () {
+        // Order.createOrder();
+        console.log(isExisting1, isExisting2, isExisting3);
+        setTimeout(function() {
+            Liq.initialise();
+        }, 5000);
+    });
 
     $('#1').focusout(function () {
         var sentenceRegex = /^\D+$/;
@@ -238,7 +237,7 @@ $(function () {
             feedback1.classList.add("valid-feedback");
             feedback1.classList.remove("display-none");
             feedback1.classList.remove("invalid-feedback");
-            $("#1-feedback").html("Correct!");
+            $("#1-feedback").html("The form is filled correctly!!");
 
             var element1 = document.getElementById("1");
 
@@ -275,7 +274,7 @@ $(function () {
             feedback2.classList.add("valid-feedback");
             feedback2.classList.remove("display-none");
             feedback2.classList.remove("invalid-feedback");
-            $("#2-feedback").html("Correct!");
+            $("#2-feedback").html("The form is filled correctly!");
 
             var element2 = document.getElementById("2");
 
@@ -298,21 +297,45 @@ $(function () {
         check(isExisting1, isExisting2, isExisting3);
     });
 
-    // $('#3').focusout(function () {
-    //     var sentenceRegex = /@/;
-    //     var myValue = this.value;
-    //     console.log(myValue);
-    //     isExisting3 = sentenceRegex.test(myValue);
-    //     console.log(isExisting3);
-    //     if (isExisting3 === true) {
-    //         isExisting3 = true;
-    //         // $('#3').css("border", " 1px solid green");
-    //     } else {
-    //         // $('#3').css("border", " 1px solid red");
-    //         // $('#numberEmail').css("visibility", "visible");
-    //     }
-    //     check(isExisting1, isExisting2, isExisting3);
-    // });
+    $('#3').focusout(function () {
+
+        var sentenceRegex = /.*\S.*/;
+        var myValue = this.value;
+        console.log(myValue);
+        isExisting3 = sentenceRegex.test(myValue);
+        console.log(isExisting3);
+
+        if (isExisting3 === true) {
+            isExisting3 = true;
+
+            var feedback3 = document.getElementById("3-feedback");
+
+            feedback3.classList.add("valid-feedback");
+            feedback3.classList.remove("display-none");
+            feedback3.classList.remove("invalid-feedback");
+            $("#3-feedback").html("The form is filled correctly but make sure you entered the right address!");
+
+            var element3 = document.getElementById("3");
+
+            element3.classList.remove("is-invalid");
+            element3.classList.add("is-valid");
+
+        } else {
+            feedback3 = document.getElementById("3-feedback");
+
+            feedback3.classList.add("invalid-feedback");
+            feedback3.classList.remove("display-none");
+            feedback3.classList.remove("valid-feedback");
+            $("#3-feedback").html("Please, make sure you entered the address right!");
+
+            element3 = document.getElementById("3");
+
+            element3.classList.remove("is-valid");
+            element3.classList.add("is-invalid");
+        }
+
+        check(isExisting1, isExisting2, isExisting3);
+    });
 
 });
 
@@ -329,6 +352,8 @@ function check(isExisting1, isExisting2, isExisting3) {
         $('#qwe').attr('disabled', true);
     }
 }
+
+// export {isExisting3};
 },{"./pizza/Liqpay":4,"./pizza/Maps":5,"./pizza/Order":6,"./pizza/PizzaCart":7,"./pizza/PizzaMenu":8}],4:[function(require,module,exports){
 (function (Buffer){
 function initialise() {
@@ -411,10 +436,13 @@ function initializeMap() {
     google.maps.event.addListener(map, 'click', function (me) {
         var coordinates = me.latLng;
 
-        geocodeLatLng(coordinates, function (err, address) {
+        geocodeLatLng(coordinates, function (err, address, text_address) {
             if (!err) {
                 //Дізналися адресу
                 console.log(address);
+
+                $("#3").val(text_address);
+
 
                 new_parker.setMap(null);
 
@@ -435,8 +463,6 @@ function initializeMap() {
             if (!err) {
                 //Дізналися адресу
                 console.log(address);
-
-                // parker.setMap(null);
 
                 parker = new google.maps.Marker({
                     position: address,
@@ -472,7 +498,7 @@ function geocodeLatLng(latlng, callback) {
             var address = results[1].formatted_address;
             // callback(null, address);
             console.log(address);
-            callback(null, latlng);
+            callback(null, latlng, address);
         } else {
             callback(new Error("Can't find address"));
         }
