@@ -45,5 +45,4 @@ function initialise() {
     });
 }
 
-
 exports.initialise = initialise;

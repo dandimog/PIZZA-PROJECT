@@ -28,7 +28,7 @@ $(function () {
         console.log(isExisting1, isExisting2, isExisting3);
         setTimeout(function() {
             Liq.initialise();
-        }, 5000);
+        }, 3000);
     });
 
     $('#1').focusout(function () {

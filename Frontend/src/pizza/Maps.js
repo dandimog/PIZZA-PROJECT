@@ -19,7 +19,6 @@ function initializeMap() {
         icon: "assets/images/map-icon.png"
     });
 
-    var old_parker;
     var new_parker = new google.maps.Marker({
         icon: "assets/images/home-icon.png"
     });
@@ -40,7 +39,15 @@ function initializeMap() {
                 new_parker.setPosition(address);
                 new_parker.setMap(map);
 
-                calculateRoute(map, point, address, function (err, address) {})
+                calculateRoute(map, point, address, function (err, address) {
+                    if (!err) {
+                        //Дізналися адресу
+                        console.log(address);
+
+                    } else {
+                        console.log("Немає дороги")
+                    }
+                })
 
             } else {
                 console.log("Немає адреси")
@@ -55,11 +62,10 @@ function initializeMap() {
                 //Дізналися адресу
                 console.log(address);
 
-                parker = new google.maps.Marker({
-                    position: address,
-                    map: map,
-                    icon: "assets/images/home-icon.png"
-                });
+                new_parker.setMap(null);
+
+                new_parker.setPosition(address);
+                new_parker.setMap(map);
 
                 // parker.setMap(map);
                 calculateRoute(map, point, address, function (err, address) {
